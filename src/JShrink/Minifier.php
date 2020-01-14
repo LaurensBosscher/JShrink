@@ -535,11 +535,20 @@ class Minifier
      */
     protected function saveRegex()
     {
+        $isEnum = false;
         echo $this->a . $this->b;
 
         while (($this->a = $this->getChar()) !== false) {
-            if ($this->a === '/') {
+            if ($this->a === '/' && !$isEnum) {
                 break;
+            }
+
+            if($this->a === '[') {
+                $isEnum = true;
+            }
+
+            if($this->a === '[') {
+                $isEnum = false;
             }
 
             if ($this->a === '\\') {
